@@ -25,6 +25,13 @@ function App() {
   [textInput, todoList]
   );
 
+  const onCheckBtnClick = useCallback((id) => {
+    setTodoList((prevState) => prevState.map((todo) => 
+      todo.id === id ? {...todo, isCompleted: true} : todo
+      )
+    );
+  }, []);
+
   return (
     <div>
        <h3>Danh sách cần làm</h3>
@@ -44,7 +51,7 @@ function App() {
         value={textInput}
         onChange={onTextInputChange}
       ></Textfield>
-      <TodoList todoList={todoList}/>
+      <TodoList todoList={todoList} onCheckBtnClick={onCheckBtnClick}/>
     </div>
   );
 }
